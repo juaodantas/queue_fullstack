@@ -1,9 +1,10 @@
 class Order {
+  final String id;
   final int position;
-  final DateTime timestap;
+  final DateTime timestamp;
   final OrderStatus status;
 
-  Order({required this.position, required this.timestap, required this.status});
+  Order({required this.id,required this.position, required this.timestamp, required this.status});
 }
 
 enum OrderStatus {
