@@ -10,8 +10,14 @@ class QueueFirestoreDatasource implements IQueueDatasource {
   Stream<List<Map>> getAllQueues() {
     final ref = firestore.collection('queue'); 
     final snapshot = ref.snapshots();
-    
-    return Stream.value([]);
+
+    return snapshot.map((e) => e.docs).map((_convert));
+  }
+   List<Map> _convert(List<QueryDocumentSnapshot<Map<String, dynamic>>> docs){
+     return docs.map((document) => {
+          'id': document.id,
+          ...document.data(),
+      },).toList();
   }
 
 }
